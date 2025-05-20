@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% if form.name.data %}
+  {% set title = 'Edit Product' %}
+{% else %}
+  {% set title = 'New Product' %}
+{% endif %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<h1>{{ title }}</h1>
+<form method="post">
+    {{ form.hidden_tag() }}
+    <div class="mb-3">
+        {{ form.name.label(class="form-label") }}
+        {{ form.name(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.price.label(class="form-label") }}
+        {{ form.price(class="form-control") }}
+    </div>
+    {{ form.submit(class="btn btn-primary") }}
+    <a class="btn btn-secondary" href="{{ url_for('product_list') }}">Cancel</a>
+</form>
+{% endblock %}
